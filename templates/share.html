@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>🍏FoodFlask</title>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+        <!-- link to pureCSS.io -->
+         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.5/build/pure-min.css" integrity="sha384-G9DpmGxRIF6tpgbrkZVcZDeIomEU22LgTguPAI739bbKytjPE/kHTK5YxjJAAEXC" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.5/build/grids-responsive-min.css">
+    </head>
+    <body class="pure-form pure-form-aligned pure-u-4-5">
+     <h1 class="text-center">Share Your Recipe</h1>
+    <form action="{{ url_for('addrec') }}", method="POST">
+        <label for="recipe_name">Recipe Name:</label>
+        <input type="text" id="recipe_name" name="recipe_name" required><br>
+
+        <label for="ingredients">Ingredients:</label>
+        <textarea id="ingredients" name="ingredients" rows="4" required></textarea><br>
+
+        <label for="instructions">Instructions:</label>
+        <textarea id="instructions" name="instructions" rows="8" required></textarea><br>
+        <div class="container">
+            <button type="submit">Share Recipe</button>
+        </div>
+        <br>
+
+      <h4 class="text-center"><a href = "\">go back to home page</a></h4>
+        <br>
+         <h4 class="text-center"><a href = "{{ url_for('list') }}">Recipe List</a></h4>
+
+    </form>
+</body>
+</html>

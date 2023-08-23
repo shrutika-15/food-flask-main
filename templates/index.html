@@ -1,0 +1,147 @@
+<!-- HTML with Jinja2 templates for Python -->
+
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>🍏FoodFlask</title>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+        <!-- link to pureCSS.io -->
+         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.5/build/pure-min.css" integrity="sha384-G9DpmGxRIF6tpgbrkZVcZDeIomEU22LgTguPAI739bbKytjPE/kHTK5YxjJAAEXC" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.5/build/grids-responsive-min.css">
+    </head>
+    <body class="pure-form pure-form-aligned pure-u-4-5">
+
+    <h1  class="header" > Welcome to TripMeal</h1>
+
+    <br>
+    <h2 class="text-center">Simple recipes made for everyday life</h2>
+     <br>
+        <!-- <img class="pure-img pure-u-1-3" src="./static/Banner.png" alt="green tree python" width="200"><br> -->
+        <img class="pure-img pure-u-1-3" id="banner" src="http://127.0.0.1:5000/static/Banner.jpg" alt="Banner">
+        <!-- <p>
+            This <a href="https://codefirstgirls.org.uk/learners/coding-kickstarter/" target="_blank"><strong>Code First Girls:</strong></a> Team 'Apple' Project (April 2021)
+            runs a programme written in
+            <a href="https://www.python.org/" target="_blank"><strong>Python</strong></a>,
+            to search online for recipes based on an ingredient, cuisine origin, dietary requirements and maximum time.
+            It uses the <a href="https://developer.edamam.com/edamam-docs-recipe-api" target="_blank"><strong>Edamam Recipe API</strong></a>
+             to get a dataset of up to ten recipe web links for the user to inspect.
+            A table in the form of a CSV file, created by the Python library
+            <a href="https://pandas.pydata.org/" target="_blank"><strong>Pandas</strong></a>,
+            is saved on the user's device for future reference, and then shown on the recipes.html webpage.<br>
+            Note: the CSV file is overwritten on each run of the search and a new recipes.html is created.
+        </p>
+        <br> -->
+
+        <!-- Form that links to app.py. User inputs their search details here and it is POSTed to app.py -->
+        <br><br>
+    <div class="row">
+        <div class="mx-auto col-10 col-md-8 col-lg-6">
+            <form class="pure-form pure-form-aligned pure-u-1-3" method="POST" action="/">
+                <fieldset class = "search-box">  <!-- Added a border around the search -->
+                    Enter your choices below.
+                    <br><br>
+                    Ingredient:<br><i><small>(one word, <20 letters)</small></i><br>
+                    <!-- Restricting users to input a single word up to 20 letters long -->
+                    <input type="text" pattern="[A-Za-z]{1,20}" class="pure-input" placeholder="avocado" name="userfood" required/><br><br>
+                    <!--
+                    Cuisine type with 'American' as default
+                    -->
+                    Cuisine origin:<br>
+                    <select id="usercuisine" name="usercuisine" required>
+                        <option>American</option>
+                        <option>Asian</option>
+                        <option>British</option>
+                        <option>Caribbean</option>
+                        <option>Central Europe</option>
+                        <option>Chinese</option>
+                        <option>Eastern Europe</option>
+                        <option>French</option>
+                        <option>Indian</option>
+                        <option>Italian</option>
+                        <option>Japanese</option>
+                        <option>Kosher</option>
+                        <option>Mediterranean</option>
+                        <option>Mexican</option>
+                        <option>Middle Eastern</option>
+                        <option>Nordic</option>
+                    </select>
+                    <br><br>
+                    Dietary requirements: <br>
+                    <select id="userhealth" name="userhealth" required>
+                        <option>none</option>
+                        <option>vegan</option>
+                        <option>vegetarian</option>
+                        <option>paleo</option>
+                        <option>dairy-free</option>
+                        <option>gluten-free</option>
+                        <option>wheat-free</option>
+                        <option>egg-free</option>
+                        <option>peanut-free</option>
+                        <option>tree-nut-free</option>
+                        <option>soy-free</option>
+                        <option>fish-free</option>
+                        <option>shellfish-free</option>
+                    </select>
+                    <br><br>
+                    Maximum prep. time:<br>
+                    <input type="number" min="1" class="pure-input" placeholder="10" name="usertime"  value="10"/><br>
+                    <i><small>minutes</small></i>
+                    <br><br>
+                    <button type="submit" class="pure-button button-success ">Search</button>
+                     <a href="share.html" >Add</a>
+                    <br>
+
+                    <!-- checking if food 'ingredient' input exists -->
+                    {% if ingredient and max_time %}
+                    <p>
+                        <strong>Search completed!</strong><br>
+		                Here are your
+                        <a href="{{ url_for('recipes_html') }}" target="_blank"><strong><span class = "recipes-link">RECIPES</span></strong></a>. Enjoy cooking!
+                        <br>
+                    </p>
+                    {% endif %}
+                </fieldset>
+            </form>
+        </div>
+    </div>
+	    <br>
+
+
+        <!-- Jinja2 allows us to insert Python code with curly braces & percent signs
+        So, *do NOT* use these, even in comments, as they will be seen
+        & cause the dreaded Internal Server Error!-->
+        <!--<p>
+            Features created by this Python programme are rendered here on this webpage by the Python library,
+            <a href="https://www.udemy.com/course/python-flask-for-beginners/" target="_blank"><strong>Flask</strong></a> and via
+            <a href="https://palletsprojects.com/" target="_blank"><strong>Jinaj2</strong></a> templates.
+            <a href="https://purecss.io/" target="_blank"><strong>Pure.CSS</strong></a> is ridiculously tiny and used to style this page.
+            The entire set of modules clocks in at 3.7KB minified and gzipped.
+            Crafted with mobile devices in mind it was important to keep the file sizes small, and every line of CSS was carefully considered.
+            Pure builds on Normalize.css and provides layout and styling for native HTML elements, plus the most common UI components.
+            Pure is responsive out of the box, so elements look great on all screen sizes.
+        </p>
+        <hr>
+        <p>
+            <strong>Meet Team 'Apple':</strong><br>
+            <a href="https://www.linkedin.com/in/aleksandra-kulawska-309699122/" target="_blank"><strong>Aleksandra Kulawska</strong></a><br>
+            <a href="https://www.linkedin.com/in/angelaytchan/" target="_blank"><strong>Angela Chan</strong></a><br>
+            <a href="https://www.linkedin.com/in/janetdornan/" target="_blank"><strong>Janet Dornan</strong></a><br>
+        </p>
+        <p>
+            A huge thank you to our wonderful, supporting, inspiring instructors:<br>
+            <a href="https://www.linkedin.com/in/deanna-green-63a412126/" target="_blank"><strong>Deanna Green</strong></a><br>
+            <a href="https://www.linkedin.com/in/rabia-mahmood-9babb513b/" target="_blank"><strong>Rabia Mahmood</strong></a><br>
+            <a href="https://www.linkedin.com/in/ellen-wootten-8a5796100/" target="_blank"><strong>Ellen Wootten</strong></a><br>
+            <br>
+            and also to
+            <a href="https://unsplash.com/@davidclode" target="_blank"><strong>David Clode</strong></a> for his photograph of
+            a rare green tree python.
+            <br><br>
+        </p> -->
+
+    </body>
+</html>

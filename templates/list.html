@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+      {% block title %}
+       List All Recipes
+      {% endblock %}
+      {% block content %}
+        <table border="1px">
+            <thead>
+                <td><strong>R_id</strong></td>
+                <td><strong>RName</strong></td>
+                <td><strong>Ingredients</strong></td>
+                <td><strong>Instruction</strong></td>
+
+            </thead>
+        </table>
+      {% endblock %}
+ </body>
+</html>
