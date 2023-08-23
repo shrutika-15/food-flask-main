@@ -1,52 +1,4 @@
-"""
-Python with 'Flask' & 'pandas'
 
-*****************************************************
-Really IMPORTANT...
-
-Make sure you have the following packages installed:
-    Flask
-    pandas
-    request
-
-To check from the PyCharm Terminal pane:
-> pip list
-
-For missing libraries, choose & install:
-> pip install requests
-> pip install flask
-> pip install pandas
-*****************************************************
-
-Imported 'Flask' & 'request' libraries:
-render_template: renders the html templates or pages
-is returned in our function
-
-"@app.route('/')"
-Runs on local server at http://127.0.0.1:5000/
-
-"@app.route('/cfg')"
-Runs on local server at http://127.0.0.1:5000/cfg
-
-Directory/file structure
-------------------------
-PythonFlask>                'project folder'
-        static>             'CSS, images & other files stored in this folder'
-            style.css
-            my.mp3
-        templates>          'HTML web pages stored in this folder
-            homepage.html
-            page1.html
-            page2.html
-        venv>               'PyCharm virtual environment
-        app.py              'Our web app'
-
-Imported 'pandas' library
-'pandas' is a software library written for the Python programming language for data manipulation and analysis.
-In particular, it offers data structures and operations for manipulating numerical tables and time series.
-Its name is a play on the phrase "Python data analysis".
-"""
-import sqlite3
 
 from flask import Flask, request, render_template
 import pandas as pd
@@ -96,7 +48,7 @@ def recipe_search(ingredient, max_time, cuisine, health):
     return data['hits']
 
 
-# Alex's pandas
+
 def run_csv(ingredient, max_time, cuisine, health):
     d = []  # clear the dataset
     # ingredient = input('Enter an ingredient: ')  - Commented out by Janet
