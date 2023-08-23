@@ -1,5 +1,5 @@
 Flask
-pandas
+pandas as pd
 sqlite3
 
 gunicorn
